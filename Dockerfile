@@ -63,6 +63,9 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # install Atlas local configuration file
 COPY config-local.js /usr/local/tomcat/webapps/atlas/js/
 
+# install the bash shell script that sets environment variables that Tomcat startup script will use to set Java heap settings
+COPY setenv.sh /usr/local/tomcat/bin/
+
 # install the bash shell deploy script that supervisord will run whenever the container is started
 COPY deploy-script.sh /usr/local/tomcat/bin/
 RUN chmod +x /usr/local/tomcat/bin/deploy-script.sh
