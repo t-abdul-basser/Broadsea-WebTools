@@ -36,5 +36,4 @@
   <user username="both" password="tomcat" roles="tomcat,role1"/>
   <user username="role1" password="tomcat" roles="role1"/>
 -->
-<user username="admin" password="abc123" roles="manager-gui" />
 </tomcat-users>
