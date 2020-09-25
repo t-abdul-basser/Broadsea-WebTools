@@ -5,7 +5,7 @@ MAINTAINER Lee Evans - www.ltscomputingllc.com
 # OHDSI WebAPI and ATLAS web application running in a Tomcat 7 server on Java JRE 8
 
 # set the WEBAPI_RELEASE environment variable within the Docker container
-ENV WEBAPI_RELEASE=2.7.2
+ENV WEBAPI_RELEASE=2.7.8
 
 # optionally override the war file url when building this container using: --build-arg WEBAPI_WAR=<webapi war file name>
 ARG WEBAPI_WAR=WebAPI-1.0.0.war
