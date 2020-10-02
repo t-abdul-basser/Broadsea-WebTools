@@ -6,6 +6,7 @@ MAINTAINER Lee Evans - www.ltscomputingllc.com
 
 # set the WEBAPI_RELEASE environment variable within the Docker container
 ENV WEBAPI_RELEASE=2.7.8
+ENV ATLAS_RELEASE=2.7.8
 
 # optionally override the war file url when building this container using: --build-arg WEBAPI_WAR=<webapi war file name>
 ARG WEBAPI_WAR=WebAPI-1.0.0.war
@@ -45,10 +46,11 @@ RUN wget $WEBAPI_WAR_URL \
     && mv /usr/local/tomcat/webapps/WebAPI*.war /usr/local/tomcat/webapps/WebAPI.war
 
 # deploy the latest released OHDSI Atlas web application
-RUN wget https://github.com/OHDSI/Atlas/archive/released.zip \
-    && unzip /usr/local/tomcat/webapps/released.zip \
-    && mv /usr/local/tomcat/webapps/Atlas-released /usr/local/tomcat/webapps/atlas \
-    && rm -f released.zip
+ENV ATLAS_RELEASED_URL=https://github.com/OHDSI/Atlas/archive/v$ATLAS_RELEASE.zip
+RUN wget $ATLAS_RELEASED_URL \
+    && unzip /usr/local/tomcat/webapps/v$ATLAS_RELEASE.zip \
+    && mv /usr/local/tomcat/webapps/Atlas-$ATLAS_RELEASE /usr/local/tomcat/webapps/atlas \
+    && rm -f v$ATLAS_RELEASE.zip
 
 # bundle the OHDSI Atlas code modules
 WORKDIR /usr/local/tomcat/webapps/atlas
